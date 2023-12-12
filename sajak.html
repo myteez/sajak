@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sajak</title>
+
+  <style>
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrap {
+      display: flex;
+      flex-direction: column;
+      height:100%;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      display: flex;
+      margin: 0;
+
+    }
+
+    .left-section{
+      width: 80%;
+    height: 100%;
+  background-color: pink;
+  min-height: 100vh;
+    }
+
+.right-section {
+background-color: #FFAF90;
+min-height: 100vh;
+
+}
+
+.space{
+margin-left: 0px;
+
+}
+
+    #text-container {
+	font-size:40px;
+      padding: 80px;
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+  <div class="wrap">
+  <div class="container">
+
+    <div class="left-section">
+      <div id="text-container"></div>
+    </div>
+
+    <div class="right-section">
+	<div class="space">
+      <h2>Sajak</h2> <br>
+      <p style="font-size: 20px">Sajak Aidakhan dan Syed
+        Direka khas...</p>
+
+
+</div>
+    </div>
+
+  </div>
+  </div>
+
+  <script>
+const texts = [];
+
+const text1 = [
+  'Penat' ,
+  'tenang bertopeng menyorokkan riak' ,
+  'sebenar' ,
+  'senyum terukir menutup dendam' ,
+  'gelak dan tawa sekadar lakonan' ,
+  'membodohkan diri berpura-pura' ,
+  'melayan karenah gerak permainan' ,
+
+  'Biarkan mereka biarkan sahaja',
+  'leka bersama permainan sendiri' ,
+  'menganggap lemah di mata mereka' ,
+  'bodoh hina seorang dipandang' ,
+  'setiap panggilan aku tidak dilayan' ,
+
+  'Sorang demi sorang hilang',
+  'jauh entah ke mana' ,
+  ' meninggalkan diri aku terduduk lemah'
+];
+
+const text2 = [
+  'mooo'
+];
+
+const text3 = [
+  'meowww'
+];
+
+texts.push(text1);
+texts.push(text2);
+texts.push(text3);
+
+const container = document.getElementById('text-container');
+
+let lineCount = 0;
+let copyText;
+
+let textLength = init();
+display();
+
+function init() {
+  var randomIndex = Math.floor(Math.random()* texts.length);
+  copyText = [...texts[randomIndex]];
+
+  return copyText.length;
+}// end init
+
+function addLine() {
+  // Get text
+  const line = copyText[0];
+
+  // Remove from array
+  copyText.splice(0, 1);
+
+  // Create element
+  const p = document.createElement('p');
+  p.textContent = line;
+
+  // Add to container
+  container.appendChild(p);
+
+  lineCount++;
+}// end addText
+
+function display() {
+  addLine();
+
+  if(lineCount < textLength) {
+    setTimeout(display, 1000);
+  }
+}// end update
+</script>
+
+</body>
+
+</html>
